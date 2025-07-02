@@ -1,6 +1,32 @@
+import json
 from decimal import Decimal, getcontext
+from pathlib import Path
 
 getcontext().prec = 100  # Set precision for Decimal operations
+
+SAVE_FILE = "t1ratio_data.json"
+
+DEFAULT_DATA = {
+    "q1": "1e0",
+    "q2": "1e0",
+    "c1": "1e0",
+    "c2": "1e0",
+    "c3": "1e0",
+    "c4": "1e0",
+}
+
+
+def load_costs():
+    if Path(SAVE_FILE).exists():
+        with open(SAVE_FILE, "r") as file:
+            return json.load(file)
+    else:
+        return DEFAULT_DATA.copy()
+
+
+def save_costs(costs):
+    with open(SAVE_FILE, "w") as file:
+        json.dump(costs, file)
 
 
 def get_c3_ratio(rho: Decimal) -> Decimal:
