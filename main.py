@@ -130,3 +130,7 @@ def main():
             show_strategy(rho)
         except Exception as e:
             print(f"An error occurred: {e}. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
